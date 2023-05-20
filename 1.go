@@ -6,7 +6,7 @@ type Human struct {
 	name string
 }
 type Action struct {
-	Human
+	Human // встраивание Human в Action, то есть все методы Human "наследуются" структурой Action
 }
 
 func (h Human) Walk(dist int) {
@@ -26,5 +26,5 @@ func main() {
 	action := Action{h}
 	action.Walk(15)
 	action.Jump()
-	action.SaySomething("Hello!")
+	action.SaySomething("Hello!") // Как видим экземпляр Action может вызывать embedded методы даже без сигнатуры Human
 }

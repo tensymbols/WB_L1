@@ -8,7 +8,7 @@ type Walker interface {
 	Walk()
 }
 
-type Human struct {
+type Man struct {
 	name string
 	age  int
 }
@@ -20,7 +20,7 @@ type LizardAdapter struct {
 	Lizard
 }
 
-func (h *Human) Walk() {
+func (h *Man) Walk() {
 	fmt.Printf("Human %s is walking\n", h.name)
 }
 
@@ -38,8 +38,8 @@ func (c *Client) WalkSomewhere(w ...Walker) {
 }
 
 func main() {
-	human := &Human{name: "Bob", age: 25}
+	man := &Man{name: "Bob", age: 25}
 	lizardAdapter := &LizardAdapter{Lizard{color: "Green"}}
 	client := Client{}
-	client.WalkSomewhere(human, lizardAdapter)
+	client.WalkSomewhere(man, lizardAdapter)
 }
