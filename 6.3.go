@@ -17,8 +17,7 @@ func main() {
 		for {
 			select {
 			case v, ok := <-ch:
-				if !ok {
-					wg.Done()
+				if !ok { // если канал закрыт то выходим из горутины
 					fmt.Println("Channel is closed")
 					return
 				}
@@ -30,11 +29,11 @@ func main() {
 	}()
 	go func() {
 		defer wg.Done()
-		ch <- 1
+		ch <- 1 // пишем в канал
 		ch <- "hello"
 		ch <- true
 		time.Sleep(1 * time.Second)
-		close(ch)
+		close(ch) // закрываем канал
 	}()
 	wg.Wait()
 

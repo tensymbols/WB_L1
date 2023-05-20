@@ -2,16 +2,17 @@ package main
 
 import "fmt"
 
-func MustSetBit(i int64, pos uint, val uint) int64 {
-	one := int64(1)
+func MustSetBit(i int64, pos uint, val uint) int64 { // функция для установления бита
+	one := int64(1) // единица типа инт64
 	switch val {
-	case 0:
-		mask := ^(one << pos)
-		return i & mask
+	case 0: // в случае если нужно установить 0
+		mask := ^(one << pos) // наша битовая маска это инверсия всех битов значения one << pos, то есть сдвига единицы на pos разрядов
+		return i & mask       // все биты в значении i, кроме того что на позиции pos останутся теми же, тк в нашей маске все биты кроме одного это единицы
+		// а бит на позиции pos станет 0, тк AND с любым значением это 0
 	case 1:
-		return i | (one << pos)
+		return i | (one << pos) // здесь маска это единица на позиции pos, и бит числа i в этой позиции тоже станет единицей ( 1 OR (0 или 1) = 1)
 	}
-	panic("Invalid value")
+	panic("Invalid value") // паникуем если val не равен нулю или единице
 }
 func main() {
 	fmt.Println(MustSetBit(32, 0, 1))

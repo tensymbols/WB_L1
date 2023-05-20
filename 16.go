@@ -4,18 +4,18 @@ import "fmt"
 
 func quickSort(arr []int, low int, high int) {
 	if low < high {
-		pi := partition(arr, low, high)
+		pi := partition(arr, low, high) // распределение
 
-		quickSort(arr, low, pi-1)
+		quickSort(arr, low, pi-1) // рекурсивно делаем то же самое, пока low < high не перестанет выполняться
 		quickSort(arr, pi+1, high)
 	}
 }
 
 func partition(arr []int, low int, high int) int {
-	pivot := arr[high]
+	pivot := arr[high] // берем за пивот последнее значение с индексом high
 	i := low - 1
 
-	for j := low; j < high; j++ {
+	for j := low; j < high; j++ { // в этом цикле мы распределяем значения меньшие пивота слева, а большие справа
 		if arr[j] < pivot {
 			i++
 
@@ -25,7 +25,7 @@ func partition(arr []int, low int, high int) int {
 
 	arr[i+1], arr[high] = arr[high], arr[i+1]
 
-	return i + 1
+	return i + 1 // возвращаем индекс
 }
 
 func main() {

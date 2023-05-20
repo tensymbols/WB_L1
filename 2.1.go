@@ -21,9 +21,9 @@ func startSquaringWorkers(q int, inCh chan int, wg *sync.WaitGroup) chan int { /
 func main() {
 	const workersQuantity = 4 // количество воркеров
 
-	nums := []int{2, 4, 6, 8, 10} // инпут
+	nums := []int{2, 4, 6, 8, 10} // входные данные
 
-	inCh := make(chan int) // инпут канал
+	inCh := make(chan int) // канал в который будут записываться входные данные
 
 	go func() { // запись в канал
 		defer close(inCh)

@@ -7,6 +7,6 @@ func main() {
 	fmt.Println(a, b)
 	a = a * b
 	b = a / b
-	a = a / b
+	a = a / b // своп умножением
 	fmt.Println(a, b)
 }

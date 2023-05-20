@@ -5,24 +5,24 @@ import (
 	"sync"
 )
 
-type CounterMutex struct {
+type CounterMutex struct { //структур счетчика содержащая сам счетчик типа uint32 и мьютекса для избежания data race
 	c  uint32
 	mu sync.Mutex
 }
 
-func NewCounterMutex(n uint32) *CounterMutex {
+func NewCounterMutex(n uint32) *CounterMutex { // конструктор счетчика с мьютексом
 	return &CounterMutex{c: n}
 }
 
 func (c *CounterMutex) Inc() {
-	c.mu.Lock()
-	c.c++
-	c.mu.Unlock()
+	c.mu.Lock()   // лок мьютекса
+	c.c++         // икремент
+	c.mu.Unlock() // анлок мьютекса
 }
 func (c *CounterMutex) GetValue() uint32 {
-	defer c.mu.Unlock()
-	c.mu.Lock()
-	return c.c
+	defer c.mu.Unlock() // анлок мьютекса после выхода из функции
+	c.mu.Lock()         // лочим мьютекс
+	return c.c          // возвращаем значение счетчика, после чего произойдет анлок мьютекса
 }
 
 func main() {
@@ -30,6 +30,8 @@ func main() {
 
 	limit1 := uint32(1e6)
 	limit2 := uint32(1e8)
+
+	// все аналогично первой реализации
 
 	var wg sync.WaitGroup
 	wg.Add(2)

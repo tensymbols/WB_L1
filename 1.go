@@ -9,6 +9,8 @@ type Action struct {
 	Human // встраивание Human в Action, то есть все методы Human "наследуются" структурой Action
 }
 
+// Методы
+
 func (h Human) Walk(dist int) {
 	fmt.Printf("%s walked %d steps\n", h.name, dist)
 }
@@ -22,7 +24,7 @@ func (h Human) SaySomething(s string) {
 }
 
 func main() {
-	h := Human{name: "Joe Schmoe"}
+	h := Human{name: "Joe Schmoe"} // инициализация
 	action := Action{h}
 	action.Walk(15)
 	action.Jump()

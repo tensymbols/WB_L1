@@ -2,30 +2,33 @@ package main
 
 import "fmt"
 
-func getSetsIntersection(s1 []any, s2 []any) []any {
-	var res []any
-	s2Map := map[any]int{}
+func getSetsIntersection(s1 []any, s2 []any) []any { // функция возвращающая пересечение множеств
+	var res []any          // результат
+	s2Map := map[any]int{} // мапа для хранения количеств значений второго множества
 	for _, v := range s2 {
-		s2Map[v] = s2Map[v] + 1
+		s2Map[v] = s2Map[v] + 1 // увеличиваем количество в мапе на 1
 	}
-	for _, v := range s1 {
-		if s2Map[v] != 0 {
+	for _, v := range s1 { // проходимся по всем значениям из первого сета(множества)
+		if s2Map[v] != 0 { // если во второй мапе есть хотя бы один такой элемент то добавляем его в результирующее множество
 			res = append(res, v)
-			s2Map[v]--
+			s2Map[v]-- // декрементируем счетчик количества значений v в мапе s2
 		}
 	}
 	return res
 }
 
 func main() {
+
+	// Из задания не было понятно нужно ли множество уникальных значений, поэтому моя реализация поддерживает пересечение неуникальных
+
 	set1 := []any{
-		661, 2, 2, 1, 3, 9, 7, 6, 100,
+		661, 2, 2, 1, 3, 9, 7, 6, 100, // входное множество 1
 	}
 	set2 := []any{
-		2, 8, 8, 16, 3, 661, 1, 448, 1e5,
+		2, 8, 8, 16, 3, 661, 1, 448, 1e5, // входное множество 2
 	}
-	intersectionSet := getSetsIntersection(set1, set2)
-	for _, v := range intersectionSet {
+	intersectionSet := getSetsIntersection(set1, set2) // создаем пересечение двух множеств
+	for _, v := range intersectionSet {                // печатаем его
 		fmt.Println(v)
 	}
 }

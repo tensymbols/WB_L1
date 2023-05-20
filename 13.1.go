@@ -6,6 +6,6 @@ func main() {
 	a := 1
 	b := 2
 	fmt.Println(a, b)
-	a, b = b, a
+	a, b = b, a // своп встроенными функциями языка
 	fmt.Println(a, b)
 }
