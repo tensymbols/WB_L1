@@ -9,7 +9,9 @@ func RevertWords(s string) string {
 	tokens := strings.Split(s, " ") // разбиваем входную строку на токены
 	sOut := ""                      // инициализируем выходную строку как пустую
 	for i := len(tokens) - 1; i >= 0; i-- {
-		sOut = fmt.Sprintf("%s %s", sOut, tokens[i]) // в обратном порядке конкатенируем токены
+		sOut += tokens[i]
+		sOut += " "
+		// в обратном порядке конкатенируем токены
 	}
 	sOut = strings.TrimSpace(sOut) // убираем лишний пробел
 	return sOut
